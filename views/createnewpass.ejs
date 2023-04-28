@@ -1,0 +1,25 @@
+<!-- <%- include('partials/header') -%> -->
+<div class="box">
+    <form method="POST"
+    action="/createnewpass"
+    class="my-login-validation"
+    novalidate="">
+    <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+      <div class="form-outline mb-4">
+        <input type="password" id="form2Example2" class="form-control" name="pin"/>
+        <label class="form-label" for="form2Example2"> New Password </label>
+      </div>
+      <div class="form-outline mb-4">
+        <input type="password" id="form2Example2" class="form-control" name="cpin"/>
+        <label class="form-label" for="form2Example2"> Confirm New Password </label>
+      </div>
+        <div class="buttonnn">
+          <button type="submit" class="btn btn-primary">
+            <!-- {/* <Link to={"/verify"} style={linkStyle}> */} -->
+            Login
+            <!-- {/* </Link> */} -->
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>

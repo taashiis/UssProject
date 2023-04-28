@@ -1,0 +1,183 @@
+.blck {
+  /* border: 1px solid black; */
+  /* margin-left: auto;
+  margin-right: 30px;
+  float: right;
+  padding: 10px; */
+  margin-right: 30px;
+}
+.button {
+  margin: 10px;
+}
+.navbar-brand {
+  margin-left: 50px;
+  font-size: 30px;
+  color: #004aad;
+  font-weight: bold;
+}
+a.nav_link:hover {
+  color: white;
+}
+a.nav_link:link {
+  text-decoration: none;
+}
+a.nav_link:active {
+  color: white;
+}
+.blue {
+  color: #004aad;
+  font-weight: bold;
+}
+.twobtn {
+  /* border: 1px solid black; */
+  margin-right: 30px;
+  position: absolute;
+  /* top: 50%; */
+  right: 0;
+  /* width: 120px; */
+  /* transform: translateY(-50%); */
+}
+.box {
+  /* border: solid 1px black; */
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  border-radius: 25px;
+  width: 500px;
+  margin: auto;
+  margin-top: 70px;
+  padding: 50px;
+  padding-bottom: 15px;
+}
+.buttonnn {
+  /* border: solid 1px black; */
+  /* padding-left: 160px; */
+  text-align: center;
+  padding-bottom: 20px;
+  color: #004aad;
+}
+.outline {
+  border: solid 1px black;
+  margin: auto;
+}
+.blubtn {
+  color: white;
+  text-decoration: none; /* no underline */
+}
+.border {
+  border: solid 1px black;
+}
+.center {
+  text-align: center;
+}
+.binav {
+  color: grey;
+}
+.dropdownm {
+  left: -120px;
+}
+.bordbox {
+  /* border-right: 1px solid #004aad; */
+  width: 250px;
+  height: 100%;
+  background-color: #004aad;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 75px; /* Stay at the top */
+  left: 0;
+  background-color: #111; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  /* padding-top: 20px; */
+}
+.navbar {
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+.nav-link {
+  color: black;
+  font-size: 20px;
+}
+.bi-box-arrow-right {
+  margin-right: 10px;
+}
+#fixedbutton {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  color: black;
+  z-index: 9998 !important;
+}
+.main {
+  margin-top: 80px;
+  margin-left: 305px; /* Same as the width of the sidenav */
+  padding: 0px 10px;
+}
+.card-s {
+  text-align: center;
+}
+.passicon {
+  transform: translateY(20%);
+  margin-right: 5px;
+}
+.card-s {
+  display: inline-block;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  /* border: 1px solid black; */
+}
+.btn-link {
+  font-size: 24px;
+  color: #004aad;
+}
+.inputfield {
+  margin-left: 10px;
+}
+.passwordone {
+  margin-top: 10px;
+}
+.passwordtwo {
+  margin-top: 5px;
+}
+.navbar {
+  width: 100%;
+  position: fixed;
+  z-index: 5000 !important;
+}
+a.linkss:hover {
+  text-decoration: none;
+  color: white;
+}
+.btn-danger {
+  margin-top: 10px;
+}
+.btn-info {
+  margin-top: 10px;
+  font-size: 12px;
+  padding: 5px;
+}
+.timg {
+  float: right;
+  /* border: 1px solid black; */
+  height: 600px;
+  width: 850px;
+}
+.maincol {
+  text-align: center;
+  width: 100%;
+  /* border: 1px solid black; */
+  margin-top: 90px;
+  margin-left: 100px;
+  display: inline;
+}
+.entry {
+  margin-top: 500px;
+  color: #004aad;
+  /* display: inline; */
+}
+.welcometag {
+  text-align: center;
+  font-size: 40px;
+  /* border: 1px solid black; */
+  margin-top: 250px;
+  padding: 0 100px 0 100px;
+}

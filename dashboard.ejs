@@ -1,0 +1,720 @@
+<!-- <%- include('partials/sidebar') -%> -->
+<div
+  class="d-flex flex-column flex-shrink-0 p-3 bg-white bordbox"
+  style="width: 280px; height: 91vh"
+>
+  <br />
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="#"  id="pass" class="nav-link active" aria-current="page" onclick="addpass()"> Password </a>
+    </li>
+    <li>
+      <a href="#" id="notes" class="nav-link link-dark" onclick="addnotes()"> Notes </a>
+    </li>
+    <li>
+      <a href="#" id="details" class="nav-link link-dark" onclick="adddetails()"> Details </a>
+    </li>
+    <li>
+      <a href="#" id="ovd" class="nav-link link-dark" onclick="addovd()"> Official Documents </a>
+    </li>
+  </ul>
+  <hr />
+  <div class="dropdown">
+    <hr />
+    <a
+      href="/logout"
+      class="d-flex align-items-center link-dark text-decoration-none nav-link"
+      id="dropdownUser2"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="currentColor"
+        class="bi bi-box-arrow-right"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
+        />
+        <path
+          fill-rule="evenodd"
+          d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+        />
+      </svg>
+      <strong>Logout</strong>
+    </a>
+  </div>
+</div>
+
+
+<div class="main">
+  <a href="#"
+    ><svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="60"
+      height="60"
+      fill="currentColor"
+      class="bi bi-plus-circle-fill"
+      viewBox="0 0 16 16"
+      id="fixedbutton"
+      data-toggle="modal"
+      data-target="#add-data"
+    >
+      <path
+        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"
+      />
+    </svg>
+  </a>
+  <div id="contentpass" style="display:none;">
+    <h2> Passwords </h2>
+    <div class="card-body">
+      <% for(var i=0; i<d.length; i++) {%>
+    <div class="card card-s" >
+      <div class="card-body">
+        <h5 class="card-title"><%= d[i].website %></h5>
+        <div style="display:flex; flex-direction: row; justify-content: center; align-items: center"><label class="form-label" for="form2Example1">
+          Username  
+        </label>
+        <input
+                type="text"
+                id="form2Example1"
+                class="form-control inputfield"
+                name="website"
+                value="<%= d[i].username %>"
+                style="width:215px;"
+              readonly/></div> 
+              <div style="display:flex; flex-direction: row; justify-content: center; align-items: center" class="passwordone"><label class="form-label" for="form2Example1">
+                Password  
+              </label>
+              <input
+                      type="password"
+                      id="<%= d[i].website %>inp"
+                      class="form-control inputfield"
+                      name="website"
+                      value="<%= d[i].hashedpasswd %>"
+                      style="width:160px;"
+                    readonly/>
+                  <button id="<%= d[i].website %>" onClick="reply_click(this.id)" class="inputfield btn btn-secondary"><svg id="<%= d[i].website %>openeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" style="display:block;">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                  </svg>
+                  <svg id="<%= d[i].website %>closeeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" style="display:none;">
+                    <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                    <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                  </svg></button></div>  
+        <h6></h6>
+        <a href="<%= d[i].link%>" target="_blank" class="btn btn-primary" > Go to link </a>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+<div id="contentnotes" style="display:none;">
+  <h2> Notes </h2>
+  <div class="card-body">
+    <% for(var i=0; i<n.length; i++) {%>
+  <div class="card card-s" >
+    <div class="card-body">
+      <h5 class="card-title"><%= n[i].title %></h5>
+      <label class="form-label" for="form2Example1" style="text-align: left; float: left;">
+        Note: 
+      </label>
+      <div style="width:auto; flex-direction: row; justify-content: center">
+      <textarea style="resize: none; color: transparent;text-shadow: 0 0 8px rgba(0,0,0,0.5);" rows="4" cols="110" id="<%= n[i].title %>area" readonly><%= n[i].hashednote %></textarea></div> 
+            <div style="display:flex; flex-direction: row; justify-content: center; align-items: center" class="passwordone">
+                <button id="<%= n[i].title %>" onClick="noteshow(this.id)" class="inputfield btn btn-secondary"><svg id="<%= n[i].title %>openeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" style="display:block;">
+                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+                <svg id="<%= n[i].title %>closeeye" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" style="display:none;">
+                  <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                  <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                </svg></button></div>  
+    </div>
+  </div>
+  <% } %>
+</div>
+</div>
+<div id="contentdetails" style="display:none;">
+  <h2> Details </h2>
+  <div class="card-body">
+    <% for(var i=0; i<det.length; i++) {%>
+  <div class="card card-s" >
+    <div class="card-body">
+      <h5 class="card-title"><%= det[i].name %></h5>
+      <div style="display:flex;  text-align: left"><label class="form-label" for="form2Example1">
+        Mobile No.  
+      </label>
+      <input
+              type="text"
+              id="form2Example1"
+              class="form-control inputfield"
+              name="website"
+              value="<%= det[i].hashmobile %>"
+              style="width:215px;"
+            readonly/></div> 
+      <label class="form-label" for="form2Example1" style="text-align: left; float: left;">
+        Address: 
+      </label>
+      <div style="width:auto; flex-direction: row; justify-content: center">
+      <textarea style="resize: none; color: transparent;text-shadow: 0 0 8px rgba(0,0,0,0.5);" rows="4" cols="50" id="<%= det[i].name %>aread" readonly><%= det[i].hashaddress %></textarea></div> 
+            <div style="display:flex; flex-direction: row; justify-content: center; align-items: center" class="passwordone">
+                <button id="<%= det[i].name %>" onClick="detshow(this.id)" class="inputfield btn btn-secondary"><svg id="<%= det[i].name %>openeyed" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" style="display:block;">
+                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+                <svg id="<%= det[i].name %>closeeyed" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" style="display:none;">
+                  <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                  <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                </svg></button></div>  
+    </div>
+  </div>
+  <% } %>
+</div>
+</div>
+<div id="contentovd" style="display:none;">
+  <h2> Official Valid Documents </h2>
+  <div class="card-body">
+    <% for(var i=0; i<ovd.length; i++) {%>
+  <div class="card card-s" >
+    <div class="card-body">
+      <h5 class="card-title"><%= ovd[i].nameofdoc %></h5>
+      <div style="display:flex;  text-align: left; flex-direction: row; justify-content: center;align-items: center"><label class="form-label" for="form2Example1">
+        Document No.  
+      </label>
+      <input
+              type="password"
+              id="<%= ovd[i].nameofdoc %>inpo"
+              class="form-control inputfield"
+              name="website"
+              value="<%= ovd[i].hasheddocno %>"
+              style="width:215px;"
+            readonly/></div> 
+            <div style="display:flex; flex-direction: row; justify-content: center; align-items: center" class="passwordone">
+                <button id="<%= ovd[i].nameofdoc %>" onClick="ovdshow(this.id)" class="inputfield btn btn-secondary"><svg id="<%= ovd[i].nameofdoc %>openeyeo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16" style="display:block;">
+                  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+                <svg id="<%= ovd[i].nameofdoc %>closeeyeo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash-fill" viewBox="0 0 16 16" style="display:none;">
+                  <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z"/>
+                  <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z"/>
+                </svg></button></div>  
+    </div>
+  </div>
+  <% } %>
+</div>
+</div>
+</div>
+
+<!-- modals -->
+<div
+  class="modal fade"
+  id="add-data"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Information</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body center">
+        <div><button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#addpass"
+          >
+            Password
+          </button></div>
+          <br>
+          <div><button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#addnotes"
+            data-dismiss="modal"
+          >
+            Notes
+          </button></div>
+          <br>
+          <div><button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#adddetails"
+            data-dismiss="modal"
+          >
+            Details
+          </button></div>
+          <br>
+          <div><button
+            type="button"
+            class="btn btn-primary"
+            data-toggle="modal"
+            data-target="#addovd"
+            data-dismiss="modal"
+          >
+            Official Documents
+          </button></div>
+          <br>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+  <div
+    class="modal fade"
+    id="addpass"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Add Information
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" data-toggle="modal" data-target="#add-pass">
+          <form method="POST" action="/addpassword">
+            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+            <div class="form-outline mb-4">
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="website"
+              />
+              <label class="form-label" for="form2Example1">
+                Name of Website
+              </label>
+            </div>
+            <div class="form-outline mb-4">
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="link"
+              />
+              <label class="form-label" for="form2Example1">
+                Link to website
+              </label>
+            </div>
+            <div class="form-outline mb-4">
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="username"
+              />
+              <label class="form-label" for="form2Example1"> Username </label>
+            </div>
+
+            <div class="form-outline mb-4">
+              <input type="password" class="form-control" name="password" id="g2" value=""/>
+              <label class="form-label" for="form2Example2"> Password </label>
+            </div>
+            Generate a password ?
+            <input
+              type="text"
+              id="g1"
+              class="form-control"
+              name="generatepass"
+              value=""
+              readonly
+            />
+            <br>
+            <div class="center">
+              <a id="generate" href="#" onclick="generatepass()"><button type="button">Generate</button></a>
+              
+            </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Save data</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div
+    class="modal fade"
+    id="addnotes"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Add Information
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" data-toggle="modal" data-target="#add-pass">
+          <form method="POST" action="/addnotes">
+            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example1">
+                Title of note
+              </label>
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="title"
+              />
+            </div>
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example1">
+                Notes to be added
+              </label>
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="notes"
+              />
+            </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Save data</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div
+    class="modal fade"
+    id="adddetails"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Add Information
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" data-toggle="modal" data-target="#add-pass">
+          <form method="POST" action="/adddetails">
+            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example1">
+                Name
+              </label>
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="name"
+              />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example1">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  id="form2Example1"
+                  class="form-control"
+                  name="address"
+                />
+              </div>
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example1">
+                  Mobile Number
+                </label>
+                <input
+                  type="numeric"
+                  id="form2Example1"
+                  class="form-control"
+                  name="mobile"
+                  maxlength="10"
+                />
+              </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Save data</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+    class="modal fade"
+    id="addovd"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">
+            Add Information
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" data-toggle="modal" data-target="#add-pass">
+          <form method="POST" action="/addovd">
+            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example1">
+                Name of Official Document
+              </label>
+              <input
+                type="text"
+                id="form2Example1"
+                class="form-control"
+                name="nameofdoc"
+              />
+            </div>
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form2Example1">
+                  Document Number
+                </label>
+                <input
+                  type="text"
+                  id="form2Example1"
+                  class="form-control"
+                  name="docno"
+                />
+              </div>
+            <br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Save data</button>
+              </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var pass = document.getElementById("pass");
+  var notes = document.getElementById("notes");
+  var details = document.getElementById("details");
+  var ovd = document.getElementById("ovd");
+  var cpass=document.getElementById("contentpass");
+  var cnotes=document.getElementById("contentnotes");
+  var cdetails=document.getElementById("contentdetails");
+  var covd=document.getElementById("contentovd");
+  function addpass() {
+      notes.classList.remove("active");
+      details.classList.remove("active");
+      ovd.classList.remove("active");
+      pass.classList.add("active");
+      cpass.style.display="block";
+      cnotes.style.display="none";
+      cdetails.style.display="none";
+      covd.style.display="none";
+  }
+  function addnotes() {
+      notes.classList.add("active");
+      details.classList.remove("active");
+      ovd.classList.remove("active");
+      pass.classList.remove("active");
+      cpass.style.display="none";
+      cnotes.style.display="block";
+      cdetails.style.display="none";
+      covd.style.display="none";
+  }
+  function adddetails() {
+      notes.classList.remove("active");
+      details.classList.add("active");
+      ovd.classList.remove("active");
+      pass.classList.remove("active");
+      cpass.style.display="none";
+      cnotes.style.display="none";
+      cdetails.style.display="block";
+      covd.style.display="none";
+  }
+  function addovd() {
+      notes.classList.remove("active");
+      details.classList.remove("active");
+      ovd.classList.add("active");
+      pass.classList.remove("active");
+      cpass.style.display="none";
+      cnotes.style.display="none";
+      cdetails.style.display="none";
+      covd.style.display="block";
+  }
+  function reply_click(clicked_id)
+{
+  var s="inp"
+  var inputwala = document.getElementById(clicked_id+"inp");
+  var oeye=document.getElementById(clicked_id+"openeye");
+  var ceye=document.getElementById(clicked_id+"closeeye");
+  if(oeye.style.display=="none"){
+    oeye.style.display="block";
+    ceye.style.display="none";
+    inputwala.type="password";
+  }
+  else{
+    oeye.style.display="none";
+    ceye.style.display="block";
+    inputwala.type="text";
+  }
+}
+var g1=document.getElementById("g1");
+  var g2=document.getElementById("g2");
+  var length = 10,
+  charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+  retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+$(document).on("click", "#generate", function(event){
+  $('input[id=g1]').val(retVal); 
+  $('input[id=g2]').val(retVal); 
+});
+function generatepass(){
+  console.log("hello")
+  var g1=document.getElementById("g1");
+  var g2=document.getElementById("g2");
+  var length = 10,
+  charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+  retVal = "";
+  for (var i = 0, n = charset.length; i < length; ++i) {
+      retVal += charset.charAt(Math.floor(Math.random() * n));
+  }
+  g1.value=retValue;
+  g2.value=retVal;
+}
+function noteshow(clickid) {
+  var oeye=document.getElementById(clickid+"openeye");
+  var ceye=document.getElementById(clickid+"closeeye");
+  var texta=document.getElementById(clickid+"area");
+  if(oeye.style.display=="none"){
+    oeye.style.display="block";
+    ceye.style.display="none";
+    texta.style="resize: none; color: transparent;text-shadow: 0 0 8px rgba(0,0,0,0.5);"
+  }
+  else{
+    oeye.style.display="none";
+    ceye.style.display="block";
+    texta.style="resize: none;"
+  }
+}
+function detshow(clickid) {
+  var oeye=document.getElementById(clickid+"openeyed");
+  var ceye=document.getElementById(clickid+"closeeyed");
+  var texta=document.getElementById(clickid+"aread");
+  if(oeye.style.display=="none"){
+    oeye.style.display="block";
+    ceye.style.display="none";
+    texta.style="resize: none; color: transparent;text-shadow: 0 0 8px rgba(0,0,0,0.5);"
+  }
+  else{
+    oeye.style.display="none";
+    ceye.style.display="block";
+    texta.style="resize: none;"
+  }
+}
+function ovdshow(clickid) {
+  console.log("inovdshow")
+  var oeye=document.getElementById(clickid+"openeyeo");
+  var ceye=document.getElementById(clickid+"closeeyeo");
+  var inputwala = document.getElementById(clickid+"inpo");
+  if(oeye.style.display=="none"){
+    oeye.style.display="block";
+    ceye.style.display="none";
+    inputwala.type="password";
+  }
+  else{
+    oeye.style.display="none";
+    ceye.style.display="block";
+    inputwala.type="text";
+  }
+}
+
+</script>

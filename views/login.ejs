@@ -1,0 +1,80 @@
+<!-- <%- include('partials/header') -%> -->
+<div class="box">
+  <form method="POST"
+  action="/login"
+  class="my-login-validation"
+  novalidate="">
+  <h1 id="alert-message"></h1>
+    <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+    <div class="form-outline mb-4">
+      <div class="buttonnn">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="60"
+          height="60"
+          fill="currentColor"
+          class="bi bi-person-circle"
+          viewBox="0 0 16 16"
+        >
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+          <path
+            fill-rule="evenodd"
+            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+          />
+        </svg>
+      </div>
+      <input
+        type="email"
+        id="form2Example1"
+        class="form-control"
+        name="email"
+      />
+      <label class="form-label" for="form2Example1"> Email address </label>
+    </div>
+
+    <div class="form-outline mb-4">
+      <input type="password" id="form2Example2" class="form-control" name="pin"/>
+      <label class="form-label" for="form2Example2"> Password </label>
+    </div>
+      <div class="center">
+        <a href="/forgot">Forgot password?</a>
+      </div>
+	  <br>
+	  <div class="buttonnn">
+		<button type="submit" class="btn btn-primary">
+		  <!-- {/* <Link to={"/verify"} style={linkStyle}> */} -->
+		  Login
+		  <!-- {/* </Link> */} -->
+		</button>
+	  </div>
+	  <div class="text-center">
+		<p>Not a member? <a href="/signup">Sign Up</a></p>
+	  </div>
+    </div>
+    
+  </form>
+</div>
+
+<script>
+  // var error = <%= alert %>;          
+  // if(error!=null) 
+  // {  
+  //   showAlert(error);
+  // }
+  // function showAlert(err){
+  //   alert('error: ' + err);
+  // }
+  // // if(true){
+  // //   alert("Hello");
+  // // }
+  // Extract the alert message from the query string of the URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const alertMessage = urlParams.get('alert');
+
+  // Set the value of the alert message to the placeholder element
+  const alertElement = document.getElementById('alert-message');
+  if (alertMessage) {
+  alertElement.innerText = alertMessage;
+  }
+
+</script>
